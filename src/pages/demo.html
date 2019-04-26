@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+   <input type="button" value="1">
+   <input type="button" value="2">
+   <input type="button" value="3">
+</body>
+<script>
+    // 需求：点击不同的btn,弹出对应的下标
+    let aBtns = document.getElementsByTagName('input')
+
+
+    for(var i = 0; i < aBtns.length; i++) {
+        aBtns[i].onclick = function () {
+            alert(i)
+        }
+    }
+    
+    // 结果：每个按钮都弹出3
+    
+    for(var i = 0; i < aBtns.length; i++) {
+        (function(i) {
+            aBtns[i].onclick = function () {
+                alert(i)
+            }
+        })(i)
+    }
+
+    // 结果：按钮依次弹出0,1,2
+
+    /*
+    知识点链接：
+    1、函数作用域：内部可以读取到外部的变量，外部不能读取到内部的变量
+    2、使用闭包，可以让函数外部读取到内部的变量
+    */
+
+    for(let i = 0; i < aBtns.length; i++) {
+        aBtns[i].onclick = function () {
+            alert(i)
+        }
+    }
+
+
+    // 这个例子说明var没有块级作用域
+</script>
+</html>
