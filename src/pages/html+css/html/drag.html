@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+ li { list-style:none; width:100px; height:30px; background:#603;margin-bottom:10px;}
+ div { width:100px; height:100px; background:#FC6; margin:100px;}
+</style>
+<script>
+ window.onload = function (){
+	var oUl = document.querySelector('ul'); 
+	var aLi = oUl.getElementsByTagName('li');
+	var oDiv = document.getElementsByTagName('div')[0];
+	var num = 0;
+	
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].ondragstart = function (){
+			this.style.background = 'red';
+		};
+		
+		/*aLi[i].ondrag = function (){
+			document.title = num++;  //和onmousemove不一样，从拖拽开始到结束连续触发
+		};*/
+		
+		aLi[i].ondragend = function (){
+			this.style.background = '#603';
+		};
+		
+		oDiv.ondragenter = function (){
+			this.style.background = 'black';
+		};
+		
+		oDiv.ondragover = function (ev){
+			document.title = num++;
+			ev.preventDefault();
+		};
+		
+		oDiv.ondragleave = function (){
+			this.style.background = '#FC6';
+		};
+		
+		oDiv.ondrop = function (){
+			//要想触发drop事件，就 必须在dragover当中阻止默认事件
+			alert(123);
+		};
+	}
+ };
+/* 
+ 拖放事件 
+1.draggable:设置为true，元素就可以拖拽了
+2.拖拽元素事件:事件对象为被拖拽元素
+dragstart:拖拽前触发 
+drag:拖拽前、拖拽结束之间，连续触发
+dragend:拖拽结束触发
+3.目标元素事件:事件对象为目标元素
+dragenter:进入目标元素触发，相当于mouseover
+dragover:进入目标、离开目标之间，连续触发
+dragleave:离开目标元素触发，相当于mouseout
+drop:在目标元素上释放鼠标触发
+*/
+</script>
+</head>
+
+<body>
+<ul>
+	<li draggable="true">a</li>
+    <li draggable="true">b</li>
+    <li draggable="true">c</li>
+</ul>
+<div></div>
+<p>注：可拖动上方的小块到大块中</p>
+</body>
+</html>

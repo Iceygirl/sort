@@ -5,12 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        div {
+            width:200px;
+            height: 200px;
+            background-color:#ccc;
+            margin-right:10px;
+            margin-bottom:10px;
+            float: left;
+        }
+    </style>
 </head>
    <input type="button" value="1">
    <input type="button" value="2">
    <input type="button" value="3">
+
+   
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div> 
 </body>
 <script>
+    var a = 5
+    var a = 5
+    console.log(a)
+    
+    // 结果：不会报错；
+
+
+    let a = 5
+    let a = 5
+    console.log(a)
+    
+    // 结果：报错；Uncaught SyntaxError: Identifier 'a' has already been declared
+
+
+    const a = 5
+    const a = 5
+    console.log(a)
+
+    // 结果：报错；Uncaught SyntaxError: Identifier 'a' has already been declared
+
+
+    // 上面的例子说明：var可以重复定义，let、const不能
+
+
+
+
+
+    // -------------------------------------------------------------------------
+
+
+
+
+
+
+    var a = 5
+    a = 7
+    console.log(a)
+
+    // 结果：正常
+
+    const b = 1
+    b = 4
+    console.log(b)
+
+
+    // 结果：报错；Uncaught TypeError: Assignment to constant variable.
+
+
+    // 上面的例子说明：var不能限制修改，const能限制修改
+
+
+
+
+    // ---------------------------------------------------------------------------
+
+
+
+
+
     // 需求：点击不同的btn,弹出对应的下标
     let aBtns = document.getElementsByTagName('input')
 
@@ -39,13 +115,434 @@
     2、使用闭包，可以让函数外部读取到内部的变量
     */
 
+
     for(let i = 0; i < aBtns.length; i++) {
         aBtns[i].onclick = function () {
             alert(i)
         }
     }
 
+    // 结果：按钮依次弹出0,1,2
 
-    // 这个例子说明var没有块级作用域
+    // 上面这个例子说明var没有块级作用域
+
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+    let a = 2
+    let b = 3
+    let c = 5
+    console.log(a + ','+ b + ',' + c)
+
+    // 之前的写法
+
+
+    let [a,b,c] = [2,3,4]
+    console.log(a + ','+ b + ',' + c)
+
+    // 结果：2,3,4
+
+
+    let {a,b} = {a:1,b:2}
+    console.log(a,b)
+
+
+    // 结果：1,2
+
+
+    // let [a,b] = [{1,2},12]
+
+    // 结果：报错；右边的{1,2}不是json对象格式
+
+
+
+    // 解构赋值：
+    // 以上说明：左右两边必须一样；右边必须是个东西
+
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+    let [a,b,c,d] = [{a:1,b:5},34,false,[1,2]]
+    console.log(a,b,c,d)
+
+    // 结果：{a: 1, b: 5} 34 false (2) [1, 2]
+
+
+    let [{a,b},c,d,[e,f]] = [{a:1,b:5},34,false,[1,2]]
+    console.log(a,b,c,d,e,f)
+
+    // 结果：1 5 34 false 1 2
+
+    
+
+    // 以上说明解构赋值的粒度（粗细）
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+    function show(a,b) {
+        console.log(a*b)
+    }
+    show(1,2)
+
+    let show = function (a,b) {
+        console.log(a*b)
+    }
+    show(1,2)
+
+    // 之前的函数写法
+
+
+    let show = (a,b) => {
+        console.log(a*b)
+    }
+    show(1,2)
+
+    let arr = [12,4,56,78,34,45]
+    arr.sort((n1,n2)=>{
+        return n1-n2
+    })
+    console.log(arr)
+
+
+    // 换为箭头函数
+
+    let arr = [12,4,56,78,34,45]
+    arr.sort((n1,n2)=>n1-n2)
+    console.log(arr)
+
+    let show = a=>console.log(a*3)
+    show(1)
+
+
+    // 1.如果有且只有一个参数，（）可以去掉
+    // 2.如果函数体只有一句话，return, {}可以去掉
+
+
+
+
+
+    // ---------------------------------------------------------------
+
+
+
+
+
+
+    let show = (a,b)=>{
+        // b = b || 5 第一种
+        if(!b) b = 5
+        console.log(a,b)
+    }
+    show(5)
+
+    // 之前的默认参数
+
+    let show = (a,b = 3)=>{
+        console.log(a,b)
+    }
+    show(5)
+
+    // 设置默认参数
+
+    let show = (a,b,...args) => {
+        console.log(a,b,args)
+    }   
+    show(1,2,3,45,6)
+
+    // 结果：1 2 (3) [3, 45, 6]
+
+
+    let obj = {
+        a:1,
+        b:3
+    }
+    let data= {
+        name:'111',
+        ...obj
+    }
+    console.log(data)
+
+
+    // 结果：{name: "111", a: 1, b: 3} 
+
+
+
+
+
+    // --------------------------------------------------------------------------------
+
+
+
+
+
+    // 需求：判断成绩是否及格
+    let arr = [12,67,89,45,89,90]
+
+
+    let arr1 = []
+    arr.map(item=>{
+        item = item >= 60 ? '及格' : '不及格'
+        arr1.push(item)
+    })
+    console.log(arr1)
+
+
+    let arr1 = arr.map(item=>item = item >= 60 ? '及格' : '不及格')
+    console.log('arr',arr)
+    console.log('arr1',arr1)
+
+    /* 结果：arr [12, 67, 89, 45, 89, 90]
+       arr1 ["不及格", "及格", "及格", "不及格", "及格", "及格"]
+    */
+
+
+
+    // 需求：找出数组找中的奇数
+    let arr1 = arr.filter(item=>item%2)
+    console.log(arr1)
+
+    // 结果：[67, 89, 45, 89]
+
+    
+
+
+    // 需求：计算总数
+    let sum = 0
+    arr.forEach(item=>{
+        sum += item
+    })
+    console.log(sum)
+
+
+    // 结果：392
+
+
+
+    // 需求：计算平均数
+    let average = arr.reduce((tmp, item, index)=>index < arr.length - 1 ? (tmp + item)
+        : (tmp + item)/arr.length)
+    console.log(average.toFixed(2))
+
+    // 结果：65.33
+
+
+
+    // 需求：把灰色的div变为红色的
+    var aDiv = document.getElementsByTagName('div')
+    console.log(aDiv) //HTMLCollection[div, div, div, div, div]
+    Array.from(aDiv).forEach(item=>{
+        item.style.backgroundColor = 'red'
+    })
+
+    // 结果：灰色的div变为红色的了
+
+
+
+    // ------------------------------------------------------------------
+
+
+     let a = 1,b = 2
+    let obj = {a,b}
+    console.log(obj)
+
+
+    // json变化1：
+    // 1.简写：名字和值一样的，可以省
+
+
+
+    let person = {
+        name:'zxm',
+        age:18,
+        show: function () {
+            console.log(this.name + this.age + '岁了')
+        }
+    }
+    person.show()
+
+
+     let person = {
+        name:'zxm',
+        age:18,
+        show() {
+            console.log(this.name + this.age + '岁了')
+        }
+    }
+    person.show()
+
+    // json变化2：
+    // 2.function 可以省略
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+     let ele = {
+        name:'周小曼',
+        age:18
+   }
+   console.log('我叫：' + ele.name + ',今年' + ele.age + '岁了')
+   console.log(`我叫：${ele.name},今年${ele.age}岁了`)
+
+
+
+    //结果：我叫：周小曼,今年18岁了
+    //     我叫：周小曼,今年18岁了
+
+
+
+   console.log('ab\nc')
+   console.log('ab\
+   c')
+
+
+    // 结果：ab
+    //       c
+    //     ab   c
+
+
+
+   console.log(`ab
+   c
+   df`)
+
+
+    //结果：ab
+    //    c
+    //    df
+
+
+    // 字符串模板：植入变量、任意折行 ``
+
+
+    let str = '1427882345@qq.com'
+    console.log(str.startsWith('1'))
+    console.log(str.endsWith('.com'))
+
+    
+    // 结果：true
+    //       true
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+    // 传统的对象写法
+    function Person(name,age) {
+        this.name = name
+        this.age = age
+    }
+
+    Person.prototype.showName = function() {
+        console.log(this.name)
+    }
+
+    Person.prototype.showAge = function () {
+        console.log(this.age)
+    }
+
+    let p = new Person('zxm',18)
+    p.showName()
+    p.showAge()
+
+
+    // 传统的继承
+
+    function Worker(name,age,job) {
+        Person.call(this,name,age)
+        this.job = job
+    }
+
+
+    Worker.prototype = new Person()
+    Worker.prototype.constructor = Worker
+    Worker.prototype.showJob= function() {
+        console.log(this.job)
+    }
+
+
+    let w = new Worker('zmx',18,'程序员')
+    w.showName()
+    w.showAge()
+    w.showJob()
+
+
+    // 方法不能写成箭头函数
+
+
+
+    // 现在的类，不是类和构造函数写在一起了
+
+    class Person{
+        constructor(name,age) {
+            this.name = name
+            this.age = age
+        }
+
+        showName() {
+            console.log(this.name)
+        }
+
+        showAge() {
+            console.log(this.age)
+        }
+    }
+
+    let p = new Person('zmx',18)
+    p.showName()
+    p.showAge()
+
+    document.onclick=p.showName.bind(p)
+
+
+    // 现在的继承   
+    class Worker extends Person{
+        constructor(name,age,job) {
+            super(name,age) //超类（父类）
+            this.job = job
+        }
+
+        showJob() {
+            console.log(this.job)
+        }
+    }
+
+    let w = new Worker('haha',18,'程序员')
+    w.showName()
+    w.showAge()
+    w.showJob()
 </script>
 </html>

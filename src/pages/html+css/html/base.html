@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 为页面上的所有链接规定默认地址或默认目标 -->
+    <base href="" target="_blank">
+    <style>
+        a:hover {
+            background: red;
+        }
+        a:active {
+            background:#000;
+        }
+        a:visited {
+            background: blue;
+        }
+        .box {
+            width:100px;
+            height:100px;
+            border:1px solid #000;
+        }
+        /* 清除浮动 */
+        .clear {
+            zoom:1;
+        }
+        .clear:after {
+            content:'';
+            display: block;
+            clear: both;
+        }
+
+        .imgBox {
+            width:300px;  
+            height:300px;
+            background-image: url('../img/2.jpg');
+            /* 图像在背景中移动，x,y偏移距离 */
+            background-position: -50px -50px;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+
+            // 选择元素的方法
+            document.querySelector可填div,#lists,.lists,[title=aaa]
+            var oDiv = document.getElementById('lists')
+            var oDiv = document.getElementsByTagName('div')[0]
+            
+            var oDiv = document.querySelector('.lists')
+            var oDiv = document.querySelectorAll('#lists')[0]
+            var oDiv = document.getElementsByClassName('lists')[0]
+            oDiv.style.backgroundColor = 'red'
+
+
+
+
+            // classList
+            var oDiv = document.getElementById('div')
+            oDiv.classList.remove('box1')
+            oDiv.classList.add('box4')
+            // 有就增加，没有就删除
+            oDiv.classList.toggle('box4')
+
+
+
+
+
+            // eval() 计算字符串,并把它作为脚本代码来执行
+            var str = 'function show(){ alert(1)}'
+            eval(str)
+            show()
+
+
+            // JSON的两个方法
+            var str = '{"name":"zmx"}'
+            var obj = JSON.parse(str)
+            console.log(obj.name)
+
+            var obj = {
+                name:'zmx'
+            }
+            console.log(typeof(JSON.stringify(obj)))
+            
+
+
+
+            // 浅拷贝
+            var obj = {
+                name:'zmx',
+                age:18
+            }
+            var obj1 = obj
+            obj1.name = 'wlb'
+            console.log(obj.name)
+            
+
+
+            // 深拷贝1，互不影响
+            var b = {}
+            for(var attr in obj) {
+                b[attr] = obj[attr]
+            }
+            b.name = 'wlb'
+            console.log(obj)
+            console.log(b)
+
+
+
+            // 深拷贝2，互不影响
+            var c = JSON.parse(JSON.stringify(obj))
+            c.name = 'wlb'
+            console.log(c)
+            console.log(obj)
+
+
+            
+            var oWrap = document.getElementById('wrap')
+            console.log(oWrap.dataset.index)
+            console.log(oWrap.dataset.indexAll)
+        }
+    </script>
+</head>
+<body>
+    <div id="wrap" data-index="1" data-index-all="2"></div>
+    <div id="div" class="box1 box2 box3">div1</div>
+    <a href="https://www.baidu.com">百度一下</a>
+
+    <!-- 表单 -->
+    <form action="">
+        姓名：<input type="text" name="username">
+        密码：<input type="password" name="psd">
+        <input type="submit">
+
+
+        <!-- 单选 -->
+        <label for="male">
+            <input id="male" type="radio" name="sex" value="male">男
+        </label>
+        <label for="female">
+            <input id="female" type="radio" name="sex" value="female">女
+        </label>
+
+
+        <!-- 多选 -->
+        <label><input type="checkbox">苹果</label>
+        <label><input type="checkbox">西瓜</label>
+        <label><input type="checkbox">苹果</label>
+        
+
+        <!-- 提示列表 -->
+        <input type="text" placeholder="请输入..." list="tipLists">
+        <datalist id="tipLists">
+            <option value="北京"></option>
+            <option value="上海"></option>
+            <option value="深圳"></option>
+        </datalist>
+        <br/>
+
+
+
+        <input type="number" min="2" max="5">
+
+
+        <input type="date">
+        <input type="datetime">
+        <input type="month">
+        <input type="week">
+        <input type="time">
+
+
+        <input type="url">
+        <input type="email">
+        <input type="tel">
+
+
+        <input type="search">
+        <input type="button" value="提交"/>
+
+
+
+        <input type="range">
+        <input type="color" name="chooseColor">
+
+
+
+        <!-- 下拉选择 -->
+        <select name="" id="">
+            <option value="beijing">北京</option>
+            <option value="shanghai" selected>上海</option>
+        </select>
+
+    </form>
+
+    ---------------------------------------------------
+    <br/>
+
+    <a href="https://www.baidu.com">百度一下</a>
+
+
+    <!-- background -->
+    <div style="width:100px;height:100px;background: url('../img/2.jpg') red no-repeat 0 0 fixed;"></div>
+
+
+    <!-- 外边距注意的问题： 上下外边距会叠压； -->
+    <div class="box" style="margin-bottom:40px;"></div>
+    <div class="box" style="margin-top:40px;"></div>
+
+
+    <div class="box">
+        <div style="width:50px;height:50px;border:1px solid #000;margin:10px;"></div>
+    </div>
+
+
+
+    <!-- css不熟的属性 -->
+    <span style="text-indent:2em;text-decoration:underline;letter-spacing:10px;">hello!</span>
+
+
+    <div class="imgBox"></div>
+    
+
+    <!-- 字符大小转换：uppercase,lowercase,capitalize -->
+    <p style="text-transform: capitalize;">aAAA</p>
+    
+    <!-- 文本溢出换行，不换行nowrap -->
+    <p style="width:200px;white-space: wrap;">我们是这样的我们是这样的我们是这样的我们是这样的我们是这样的</p>
+
+
+    <!-- 溢出显示省略号 -->
+    <p style="width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">我们是这样的我们是这样的我们是这样的我们是这样的我们是这样的</p>
+
+
+
+    <!-- css选择器 -->
+    <div class="wrap">
+        <h3><span>哈哈哈</span></h3>
+        <h3>标题</h3>
+        <span>嘻嘻嘻</span>
+        <span>嘻嘻嘻</span>
+        <div class="label">aaa</div>
+        <em class="label">bbb</em>
+    </div>
+
+
+    <div id="lists" class="lists" style="width:100px;height:100px;border:1px solid #000;"></div>
+</body>
+</html>
+<style>
+
+
+    /* 选择器 */
+    /* 类名为.wrap元素下的所有后代span元素 */
+    .wrap span{
+        color:red;
+    }
+
+    /* 同时满足的元素 */
+    div.label {
+        color:#999;
+    }
+
+
+    /* 类名为.wrap元素下的所以子代span元素（不包括孙的） */
+    .wrap>span {
+        color:#999;
+    }
+
+
+    /* 所有兄弟节点 */
+    h3~span {
+        color:blue;
+    }
+
+
+    /* 后面紧挨着的兄弟节点 */
+    h3+span {
+        color:blue;
+    }
+</style>

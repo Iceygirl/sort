@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>测试一下</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+    .box {
+        background: red;
+    }
+    /* table表格边线合并的方法 */
+    .table {
+        border-collapse: collapse;
+    }
+    </style>
+</head>
+<body>
+    <!-- 外部样式表、内部样式表、内联样式 -->
+    <div class="box" style="background: blue;"></div>
+
+
+
+
+    <!-- a瞄点 -->
+    <a href="#box1">第一章</a>
+    <a href="#box2">第二章</a> 
+    
+    <div id="box1" style="height:500px;" >
+    第一章<br/>
+    
+    -----------------
+    </div>
+    <div id="box2" style="height:500px;">
+    第二章<br/>
+    
+    ------------------
+    </div>
+
+
+
+
+    <!-- 热区 -->
+    <img src="../img/2.jpg" alt="img" width="300" height="300" usemap="#flowermap">
+    <map id="flowermap" name="flowermap">
+        <!-- 矩形coords：顶点坐标和对角坐标，圆形coords：圆点坐标和半径 -->
+        <area shape="rect" coords="0,0,10,10" href="https://www.baidu.com" target="_blank" alt="">
+        <area shape="circle" coords="20,20,10" href="https://www.baidu.com" target="_blank" alt="">
+    </map>
+
+
+    <!-- 表格,跨行跨列的话先写，再删除 -->
+    <table border="1"  bordercolor="blue" cellspacing="0" cellpadding="0" class="table" bgcolor="red" background="../img/2.jpg">
+        <caption>我的表格</caption>
+        <tr>
+            <th>时间</th>
+            <th>人物</th>
+            <th>地点</th>
+        </tr>
+        <tr>
+            <td>2.14</td>
+            <td colspan="2">周晓吗</td>
+        </tr>
+        <tr>
+            <td rowspan="2">3.01</td>
+            <td>王大胖</td>
+            <td>北京</td>
+        </tr>
+        <tr>
+            <td>王大胖</td>
+            <td>北京</td>
+        </tr>
+    </table>
+
+    
+    
+</body>
+</html>

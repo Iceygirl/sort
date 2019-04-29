@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>frame</title>
+    
+</head>
+<!-- frameset:框架集,使用的话要去掉body标签
+         rows设置框架占据的高度，rows="50%,*" -->
+<frameset cols="30%,*">
+    <frame src="./style.html" noresize="noresize" name="frame1"></frame>
+    <frame src="./tag.html"  name="frame2"></frame>
+    <noframes>你的浏览器不支持frame</noframes>
+</frameset>
+
+<!-- 混合框架 -->
+<frameset rows="50%,50%">
+    <frame src="./style.html">
+    <frameset cols="25%,75%">
+        <frame src="./style.html">
+        <frame src="./tag.html">
+    </frameset>
+</frameset>
+
+<!-- <body>
+    <iframe src="./tag.html" frameborder="0" width="600" height="800" scrolling="false"></iframe>
+</body> -->
+</html>
