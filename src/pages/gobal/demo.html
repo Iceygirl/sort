@@ -27,6 +27,7 @@
    <div></div>
    <div></div> 
 </body>
+<script src="jquery.js"></script>
 <script>
     var a = 5
     var a = 5
@@ -544,5 +545,186 @@
     w.showName()
     w.showAge()
     w.showJob()
+
+
+    // ------------------------------------------------------------------------
+
+
+
+
+    let p = new Promise((resolve,reject)=>{
+        $.ajax({
+            url:'1.json',
+            dataType:'json', //这里遇到问题,之前是1.txt,返回的是string,如果dataType设置为json的话，一直会进入error回调
+            success(res) {
+                resolve(res)
+            },
+            error(err) {
+                reject(err)
+            }
+        })
+    })
+
+    p.then(res=>{
+        console.log(res)  
+    },err=>{
+        console.log('失败')
+    })
+
+
+    // 结果：{a:1,b:2}
+
+
+
+
+    // 第一种写法
+    let p1 = new Promise((resolve,reject)=>{
+        $.ajax({
+            url:'1.json',
+            dataType:'json',
+            success(res) {
+                resolve(res)
+            },
+            error(err) {
+                reject(err)
+            }
+        })
+    })
+
+    
+    let p2 = new Promise((resolve,reject)=>{
+        $.ajax({
+            url:'2.json',
+            dataType:'json',
+            success(res) {
+                resolve(res)
+            },
+            error(err) {
+                reject(err)
+            }
+        })
+    })
+
+    let p3 = new Promise((resolve,reject)=>{
+        $.ajax({
+            url:'3.json',
+            dataType:'json',
+            success(res) {
+                resolve(res)
+            },
+            error(err) {
+                reject(err)
+            }
+        })
+    })
+
+    Promise.all([p1,p2,p3])
+        .then(([res1,res2,res3])=>{
+            console.log(res1,res2,res3)
+        })
+
+
+
+    // 第二种写法
+    Promise.all([
+        $.ajax({ url:'1.json', dataType: 'json'}),
+        $.ajax({ url:'2.json', dataType: 'json'}),
+        $.ajax({ url:'3.json', dataType: 'json'}),
+    ])
+        .then(([res1,res2,res3])=>{
+            console.log(res1,res2,res3)
+        })
+
+    // 结果：{a: 1, b: 2} {name: "zxm", age: 18} (5) [1, 2, 2, 3, 4]
+
+    // 原因：jquery封装的ajax本身是一个Promise对象
+
+
+    // ------------------------------------------------------------------
+
+    
+
+    function *show() {
+        console.log('aaa')
+
+        yield; 
+        
+        console.log('bbb')
+    }
+
+    let gen = show()
+
+    gen.next() //aaa
+
+    gen.next() //bbb
+
+
+    // 带*的为generator函数，可以暂停
+    // yield有放弃，暂停的意思，可以带参数，也可以返回
+
+
+
+
+     function *show() {
+        console.log('aaaa')
+
+        let a = yield
+
+        console.log('bbb' + a)
+    }
+
+    let gen = show()
+    gen.next()
+
+    gen.next(12)
+
+
+
+    /*结果：aaaa
+          bbb12
+
+    */
+
+
+    function *show() {
+        console.log('aaa')
+        yield 55
+
+        console.log('bbb')
+    }
+
+    let gen = show()
+
+    let res1 = gen.next()
+    let res2 = gen.next()
+    console.log(res1)
+    console.log(res2)
+
+
+    /* 结果：aaa
+        bbb
+        {value: 55, done: false}
+        {value: undefined, done: true}
+    */
+
+
+
+    // --------------------------------------------------------------------
+
+
+    (async ()=>{
+       let res1 = await $.ajax({url: '1.json', dataType: 'json'})
+
+       if(res1.a === 2) {
+           let res2 = await $.ajax({url:'2.json' ,dataType: 'json'})
+           console.log(res2)
+       } else {
+           let res3 = await $.ajax({url:'3.json' ,dataType: 'json'})
+           console.log(res3)
+       }
+   })()
+
+    // 结果：(5) [1, 2, 2, 3, 4]
+
 </script>
 </html>
