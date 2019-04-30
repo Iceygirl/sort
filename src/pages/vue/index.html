@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基本语法</title>
+    <style>
+        .active {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <!-- 双向绑定，v-model,v-if,v-show -->
+    <!-- <input type="text" v-model="name">
+    <span>你的名字是{{name}}</span><br/>
+    <input type="text" v-model="age">
+    <span>你的年龄是{{age}}</span><br/>
+    <input type="text" v-model="sex">
+    <span>你的性别是{{sex}}</span> -->
+    
+
+
+
+    <!-- v-for 对象数组迭代 -->
+    <!-- <ul>
+        <li v-for="food in foodLists">{{food.name}}:￥{{food.discount ? (food.price * food.discount).toFixed(2) : food.price}}</li>
+    </ul>
+    <span>{{ (12 * 0.8).toFixed(1)}}</span> -->
+
+
+
+
+    <!-- v-bind: 简写为： -->
+    <!-- <a :class="{active:isActive}" :href="url" target="_blank">百度一下</a> -->
+
+
+
+
+    <!-- v-on:click 可以简写为@click -->
+    <!-- <button @mouseenter="onMouseEnter" @mouseout="onMouseOut" @click="onClick">按钮</button>
+    <button v-on:click="onClick" v-on="{mouseenter: onMouseEnter, mouseout: onMouseOut}"></button> -->
+
+
+
+
+    <!-- @submit="onSubmit($event)" 除了prevent 还有stop -->
+    <!-- <form @submit.prevent="onSubmit()">
+        <input type="text" @keyup.enter="onEnter">
+        <button>提交</button>
+    </form> -->
+
+    
+
+    <!-- v-model的三个修饰符：
+    lazy:惰性绑定，不会实时更新数据，input文本框blur的时候才改变
+    trim：去掉前后的空格，可以通过pre显示，pre预格式化文本
+    number:如果输入数字的话，会将数字的字符串转为number类型
+    -->
+    <!-- <input type="text" v-model.number="name">
+    <pre>{{name}}</pre>
+    <span>{{typeof name}}</span> -->
+
+
+
+
+
+    <!-- v-model在其他类型上的应用:input,textarea,select -->
+    <!-- <input type="text"> -->
+
+    <!-- 传统做法：单选， name相同-->
+    <!-- <label for="male">
+        <input id="male" type="radio" name="sex" value="male">男
+    </label>
+    <label for="female">
+        <input id="female" type="radio" name="sex" value="female">女
+    </label> -->
+
+
+    <!-- 使用v-model的单选 -->
+    <!-- <label>
+        <input type="radio" v-model="sex" value="male">男
+    </label>
+    <label>
+        <input type="radio" v-model="sex" value="female">女
+    </label><br/>
+    {{sex}} -->
+
+
+
+
+
+    <!-- 多选 -->
+    <!-- <label>
+        <input type="checkbox" v-model="sexLists" value="male">男
+    </label>
+    <label>
+        <input type="checkbox" v-model="sexLists" value="female">女
+    </label><br/>
+    {{sexLists}} -->
+
+
+
+
+    <!-- <textarea v-model="textarea" name="" id="" cols="30" rows="10"></textarea> -->
+
+
+    <!-- 下拉多选 -->
+    <!-- <select v-model="selectLists" name="" id="" multiple>
+        <option value="1">111</option>
+        <option value="2">222</option>
+    </select>
+    {{selectLists}} -->
+
+
+
+
+
+    <!-- 控制流指令：v-if,v-else-if,v-else -->
+    <!-- <div v-if="role === 'admin' || role === 'super_admin'">
+        管理员你好
+    </div>
+    <div v-else-if="role === 'hr'">
+        hr你好
+    </div>
+    <div v-else>
+        你没有权限访问此页面
+    </div> -->
+
+
+
+
+
+    <!-- 计算属性：computed，相比较methods的话可以先拿缓存了的数据，methods的话会每次都进行计算 -->
+    <!-- <table border="1">
+        <thead>
+            <th>学科</th>
+            <th>学分</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>语文</td>
+                <td><input type="text" v-model.number="Chinese"></td>
+            </tr>
+            <tr>
+                <td>数学</td>
+                <td><input type="text" v-model.number="Math"></td>
+            </tr>
+            <tr>
+                <td>英语</td>
+                <td><input type="text" v-model.number="English"></td>
+            </tr>
+            <tr>
+                <td>总分</td>
+                <td>{{sum}}</td>
+            </tr>
+            <tr>
+                <td>平均分</td>
+                <td>{{average}}</td>
+            </tr>
+        </tbody>
+    </table> -->
+
+
+
+
+    <!-- <alert></alert> -->
+</div>
+
+<!-- 组件的域 -->
+<div id="seg">
+    <haha></haha>
+</div>
+<script src="./lib/vue.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>

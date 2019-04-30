@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot</title>
+    <style>
+        .panel {
+            width:300px;
+            border:1px solid #000;
+            border-bottom:none;
+            margin-bottom:15px;
+        }
+        .panel .title, .panel .footer{
+            margin:0;
+        }
+        .panel > * {
+            padding:15px;
+            border-bottom:1px solid #000;
+        }
+        .panel .content {
+            word-wrap:break-word;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <panel>
+        <p slot="title">aa</p>
+        <div slot="content">111</div>
+        <div slot="footer">111</div>
+    </panel>
+    <panel>
+        <p slot="title">aa</p>
+        <div slot="content">222</div>
+        <div slot="footer">2222</div>
+    </panel>
+</div>
+<template id="panel">
+    <div class="panel">
+        <p class="title">
+            <slot name="title"></slot>
+        </p>
+        <div class="content">
+            <slot name="content"></slot>
+        </div>
+        <p class="footer">
+            <slot name="footer"></slot>
+        </p>
+    </div>
+</template>
+<script src="./lib/vue.js"></script>
+<script src="./js/slot.js"></script>
+</body>
+</html>

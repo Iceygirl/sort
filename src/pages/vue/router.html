@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>路由配置</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/">首页</router-link>
+        <router-link to="/about">关于我们</router-link>
+        <router-link to="/user/王先森?age=20">王先森</router-link>
+        <router-link to="/user/周小姐?age=40">周小姐</router-link>
+        <button @click="jumpTo">点击</button>
+        <div class="content">
+            <router-view></router-view>
+        </div>
+    </div>
+<script src="./lib/vue.js"></script>
+<script src="./lib/vue-router.js"></script>
+<script src="./js/router.js"></script>
+</body>
+</html>

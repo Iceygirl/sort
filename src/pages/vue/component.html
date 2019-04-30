@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件之间的通信</title>
+</head>
+<body>
+<div id="app">
+    <!-- 父子组件通信 -->
+    <!-- 父组件 -->
+    <!-- <head-tip name="哈哈"></head-tip> -->
+
+    <!-- 过滤器 -->
+    <span>{{ price | currency }}</span>
+</div>
+<!-- 子父之间的通信，平行组件之间的通信 -->
+<div id="seg">
+    <parent></parent>
+    <haha></haha>
+    <xixi></xixi>
+</div> 
+
+<script src="./lib/vue.js"></script>
+<script src="./js/component.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.main {
+    height:auto; 
+}
+.main > div {
+    float: none;
+}
+.main > div:nth-child(1) {
+    width:100%;
+    height:auto;
+}
+.content {
+    width:100%;
+}
+.main > div:nth-child(3) {
+    display: none;
+}
+.linkWrap {
+    display: none;
+}
+
+#checkbox:checked ~ div{
+    display: block;
+}
+
+.label {
+    display: block;
+    position: absolute;
+    top:10px;
+    right:10px;
+    font-size:14px;
+    color:rgba(255,255,255,.5);
+    cursor: pointer;
+}
