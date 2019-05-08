@@ -763,7 +763,7 @@
     // ajax请求
     $('input').click(function() {
         $.ajax({
-            url:'http://localhost:8088/demo/2.json',
+            url:'2.json',
             dataType:'json',
             success(res) {
                 alert(res)
@@ -773,5 +773,8 @@
             }
         })
     })
+
+    // 记得改访问的路径，换成服务器上的路径，如http://localhost:8088/demo/demo.html
+
 </script>
 </html>
