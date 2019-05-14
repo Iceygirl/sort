@@ -375,7 +375,7 @@
     // ------------------------------------------------------------------
 
 
-     let a = 1,b = 2
+    let a = 1,b = 2
     let obj = {a,b}
     console.log(obj)
 
@@ -776,5 +776,119 @@
 
     // 记得改访问的路径，换成服务器上的路径，如http://localhost:8088/demo/demo.html
 
-</script>
+
+
+
+
+    // ---------------------------------------------------------------------------
+
+
+
+
+    // 原生的ajax
+    function ajax(method,url,data,success) {
+        let xhr = new XMLHttpRequest()
+        
+        // 兼容IE
+        if(!xhr) {
+            xhr = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+
+        if(method.toLowerCase() === 'get') {
+            url += '?' + data
+        }
+
+        // 创建连接
+        xhr.open(method,url,true)
+
+        // 发送请求
+        if(method.toLowerCase() === 'get') {
+            xhr.send()
+        } else {
+            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
+            xhr.send(data)
+        }
+        
+
+        // 处理请求结果
+        xhr.onreadystatechange = function () {
+
+            // 请求完成
+            if(xhr.readyState === 4) {
+
+                // 请求成功
+                if(xhr.status >= 200 && xhr.status <=300 && xhr.status !== 304) {
+                    success && success(xhr.responseText)
+                } else {
+                    console.log('请求失败,ERR' + xhr.status)
+                }
+            }
+        }
+    }
+
+    ajax('post','1.json','{a:1,b:2}',function(res) {
+        console.log(res)
+    })
+
+
+
+
+    // ------------------------------------------------------------------------------------
+
+
+    let a = [1,2,3,4]
+    b = a
+    console.log(b)
+    a[0] = 8
+    console.log(b)
+
+    // 浅拷贝
+    // 结果都是[8,2,3,4]
+
+
+
+    let a = [1,2,3]
+    let b = a.concat([])
+    a[0] = 8
+    console.log(a)
+    console.log(b)
+
+    // 结果:[8,2,3] [1,2,3]
+
+
+
+
+    let a = [{a:1,b:2},2,3]
+    let b = a.concat([])
+    a[0].a = 8
+    console.log(a)
+    console.log(b)
+    
+
+    // 拷贝了一层，也属于浅拷贝
+    // 结果都是[{a:8,b:2},2,3]
+
+
+    let a = [{a:1,b:2},2,3]
+    b = JSON.parse(JSON.stringify(a))
+    a[0].a = 8
+    console.log(a)
+    console.log(b)
+
+    // 深拷贝
+    结果是[{a:1,b:2},2,3] [{a:8,b:2},2,3]
+
+
+
+    /*
+    深浅拷贝：（引用类型，场景，栈堆）
+    1 主要针对引用类型，例如json对象,数组,函数; 基本数据类型为number,string,boolean,null,undefined
+    2 有a,b两者,b复制a的内容,之后修改a,看b是否发生了变化,如果b变化了,只是做浅拷贝，没有发生变化，自食其力的完成了深拷贝
+    3 基本数据类型存放在栈内存：name  val
+                                a    1
+      引用数据类型存放堆内存：  name  val              堆内存val
+                                a   堆内存地址 -》    [0,1,2,3]
+    4 在util.js有封装
+    */
+</script>   
 </html>
