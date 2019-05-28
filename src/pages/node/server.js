@@ -16,8 +16,6 @@ server.listen(8888)
 // 创建并监听端口
 http.createServer(function(req, res) {
     console.log(url.parse(req.url))
-
-
     // console.log('get request')
     // 这里会输出两次get request，原因是会请求favicon.ico
 
@@ -106,5 +104,77 @@ HTTP.createServer((req,res)=>{
 
 
 }).listen(8089)
+ 
+console.log('node服务已启动')
+
+
+
+
+// ----------------------------------------------------------------------
+
+
+
+// 格式化url
+console.log(url.parse(req.url,true))
+
+
+// 结果：
+// Url {
+//     protocol: null,
+//     slashes: null,
+//     auth: null,
+//     host: null,
+//     port: null,
+//     hostname: null,
+//     hash: null,
+//     search: '?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=s&oq=%25E5%2593%2588%25E5%2593%2588&rsv_pq=cd83ac0300108bde&rsv_t=2c0bGt%2Bdu40JUQs7lghyZpClR04efFgjha39Y4WvQfz1PX%2FJ05U8n9E8ZGU&rqlang=cn&rsv_enter=1&rsv_sug3=4&rsv_sug1=5&rsv_sug7=101&rsv_sug2=0&inputT=1739&rsv_sug4=1740',
+//     query:
+//      { ie: 'utf-8',
+//        f: '8',
+//        rsv_bp: '1',
+//        rsv_idx: '1',
+//        tn: 'baidu',
+//        wd: 's',
+//        oq: '%E5%93%88%E5%93%88',
+//        rsv_pq: 'cd83ac0300108bde',
+//        rsv_t: '2c0bGt+du40JUQs7lghyZpClR04efFgjha39Y4WvQfz1PX/J05U8n9E8ZGU',
+//        rqlang: 'cn',
+//        rsv_enter: '1',
+//        rsv_sug3: '4',
+//        rsv_sug1: '5',
+//        rsv_sug7: '101',
+//        rsv_sug2: '0',
+//        inputT: '1739',
+//        rsv_sug4: '1740' },
+//     pathname: '/',
+//     path: '/?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=s&oq=%25E5%2593%2588%25E5%2593%2588&rsv_pq=cd83ac0300108bde&rsv_t=2c0bGt%2Bdu40JUQs7lghyZpClR04efFgjha39Y4WvQfz1PX%2FJ05U8n9E8ZGU&rqlang=cn&rsv_enter=1&rsv_sug3=4&rsv_sug1=5&rsv_sug7=101&rsv_sug2=0&inputT=1739&rsv_sug4=1740',
+//     href: '/?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=s&oq=%25E5%2593%2588%25E5%2593%2588&rsv_pq=cd83ac0300108bde&rsv_t=2c0bGt%2Bdu40JUQs7lghyZpClR04efFgjha39Y4WvQfz1PX%2FJ05U8n9E8ZGU&rqlang=cn&rsv_enter=1&rsv_sug3=4&rsv_sug1=5&rsv_sug7=101&rsv_sug2=0&inputT=1739&rsv_sug4=1740' }
+
+
+// ---------------------------------------------------------------------------------
+
+
+// 例子：模仿wamp，直接将文件放在www中，根据路由读取文件
+
+let http = require('http')
+let url = require('url')
+let fs = require('fs')
+
+
+http.createServer((req,res)=>{
+    fs.readFile(`www${req.url}`,(err, data)=>{
+        if(err) {
+            res.write('404')
+        } else {
+            res.write(data)
+        }
+        res.end()
+    })
+
+    // res.end() 报错：Error: write after end,因为fs.readFile是异步操作，不会等他，先执行后面的end()就会造成错误
+}).listen(8089)
 
 console.log('node服务已启动')
+
+
+
