@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单个按钮的显示隐藏</title>
+</head>
+<body>
+    <input type="button" value="显示">
+    <div class="box"></div>
+<script>
+    let oBtn = document.getElementsByTagName('input')[0]
+    let oBox = document.getElementsByTagName('div')[0]
+    let flag = false
+    oBtn.onclick = function () {
+        flag = !flag
+        if(flag) {
+            oBox.style.display = 'block'
+            oBtn.value = '隐藏'
+        } else {
+            oBtn.value = '显示'
+            oBox.style.display = 'none'
+        }
+    }
+</script>
+<style>
+    .box {
+        width:100px;
+        height:100px;
+        background-color:blueviolet;
+        display: none;
+    }
+</style>
+</body>
+</html>
