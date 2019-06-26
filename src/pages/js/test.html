@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>类似下拉</title>
+</head>
+<body>
+    <div class="box">
+        <span>微博</span>
+        <ul class="select">
+            <li class="selectItem">私信</li>
+            <li class="selectItem">评论</li>
+            <li class="selectItem">@我</li>
+        </ul>
+    </div>
+
+<script>
+    let oDiv = document.getElementsByTagName('div')[0]
+    let oUl = document.getElementsByTagName('ul')[0]
+    let oSpan = oDiv.getElementsByTagName('span')[0]
+    let aLi = oUl.getElementsByTagName('li')
+
+    oDiv.onmouseover = function () {
+        oUl.style.display = 'block'
+        oDiv.style.borderBottom = 'none'
+    }
+
+    oDiv.onmouseout = function () {
+        oUl.style.display = 'none'
+        oDiv.style.borderBottom = '1px solid #000'
+    }
+    
+    Array.from(aLi).forEach(item=>{
+        item.onclick = function () {
+            oSpan.innerHTML = item.innerHTML
+            oUl.style.display = 'none'
+            oDiv.style.borderBottom = '1px solid #000'
+        }
+    })
+</script>
+
+
+<!-- 样式 -->
+<style>
+html,body,ul {
+    margin:0;
+    padding: 0;
+}
+html,body {
+    width:100%;
+    height: 100%;
+}
+body {
+    padding-top:20px;
+    padding-left:20px;
+    box-sizing: border-box;
+}
+.box {
+    display: inline;
+    padding:10px 20px;
+    border:1px solid #000;
+    position: relative;
+    cursor: pointer;
+}
+.select {
+    position: absolute;
+    top:41px;
+    border:1px solid #000;
+    list-style:none;
+    width:100px;
+    display:none;
+}
+.selectItem {
+    width:100%;
+    height:30px;
+    line-height:30px;
+    text-align: center;
+    cursor: pointer;
+}
+.selectItem:hover {
+    background:yellowgreen;
+}
+</style>
+</body>
+</html>

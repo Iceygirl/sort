@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>设置样式</title>
+</head>
+<body> 
+    请为下面的div设置样式：<input type="button" class="setBtn" value="点击设置">
+    <div class="box"></div>
+
+    <div class="dialog">
+        <div class="panel">
+            <div class="row">
+                <p class="label">选择背景色：</p>
+                <span>红</span>
+                <span>黄</span>
+                <span>蓝</span>
+            </div>
+            <div class="row">
+                <p class="label">选择宽：</p>
+                <span>100</span>
+                <span>200</span>
+                <span>300</span>
+            </div>
+            <div class="row">
+                <p class="label">选择高：</p>
+                <span>100</span>
+                <span>200</span>
+                <span>300</span>
+            </div>
+            <div class="row">
+                <input type="button" value="恢复" id="resetBtn">
+                <input type="button" value="确定" id="confirmBtn">
+            </div>
+        </div>
+    </div>
+<script>
+    let oSetBtn = document.getElementsByTagName('input')[0]
+    let aDiv = document.getElementsByTagName('div')
+    let oReset = document.getElementById('resetBtn')
+    let oConfirm = document.getElementById('confirmBtn')
+    let oBox = aDiv[0]
+    let oDialog = aDiv[1]
+    let oPanel = aDiv[2]
+
+    let aSpan = oPanel.getElementsByTagName('span')
+    
+    Array.from(aSpan).forEach((item,index)=>{
+        item.onmouseover = function () {
+            // 公共的样式
+            this.style.borderColor = '#000'
+            this.style.color = '#000'
+            this.style.backgroundColor = '#ef9400'
+
+            if(index === 0) {
+
+                this.style.backgroundColor = '#C03'
+                oBox.style.backgroundColor = '#C03'
+
+            } else if(index === 1) {
+
+                this.style.backgroundColor = '#efbd00'
+                oBox.style.backgroundColor = '#efbd00'
+
+            } else if(index === 2) {
+
+                this.style.backgroundColor = '#5a94ef'
+                oBox.style.backgroundColor = '#5a94ef'
+
+            } else if(index === 3) {
+
+                oBox.style.width = '100px'
+
+            } else if(index === 4) {
+
+                oBox.style.width = '200px'
+
+            } else if(index === 5) {
+
+                oBox.style.width = '300px'
+
+            } else if(index === 6) {
+
+                oBox.style.height = '100px'
+
+            } else if(index === 7) {
+
+                oBox.style.height = '200px'
+
+            } else if(index === 8) {
+
+                oBox.style.height = '300px'
+
+            }       
+        }
+
+        item.onmouseout = function () {
+            this.style.backgroundColor = '#efefef'
+            this.style.borderColor = '#c0c0c0'
+            this.style.color = '#c0c0c0'
+        }
+    })
+
+    oSetBtn.onclick = function () {
+        oDialog.style.display = 'block'
+    }
+
+    oReset.onclick = function () {
+        oBox.style.width = '100px'
+        oBox.style.height = '100px'
+        oBox.style.backgroundColor = '#fff'
+    }
+
+    oConfirm.onclick = function () {
+        oDialog.style.display = 'none'
+    }
+</script>
+<style>
+    body {
+        font-size:18px;
+    }
+    .setBtn {
+        border:none;
+        background-color:red;
+        color:#fff;
+        cursor: pointer;
+        padding:8px;
+        border-radius: 4px;
+    }
+    .box {
+        width:100px;
+        height:100px;
+        border:2px solid #000;
+        margin-top:10px;
+    }   
+    .dialog {
+        width:100%;
+        height: 100%;
+        background-color:rgba(0, 0, 0, 0.7);
+        position:absolute;
+        left:0;
+        top:0;
+        display: none;
+    }
+    .panel {
+        position: absolute;
+        left:50%;
+        top:50%;
+        width:340px;
+        border:20px solid #999;
+        background-color: #fff;
+        margin-top:-110px;
+        margin-left:-190px;
+    }
+    .row {
+        padding-left:20px;
+    }
+    .label {
+        display: inline-block;
+        width:108px;
+    }
+    .row span {
+        font-size:14px;
+        display: inline-block;
+        width:34px;
+        height:32px; 
+        border:1px solid #c0c0c0; 
+        color: #c0c0c0;
+        background: #efefef;
+        text-align:center;
+        line-height: 32px;
+        cursor: pointer;
+        user-select: none;
+    }
+    .panel .row:nth-last-child(1) {
+        padding:20px 0 10px 70px;
+    }
+    .panel .row:nth-last-child(1)  input {
+        background-color:#002952;
+        color:#fff;
+        border:none;
+        color:#fff;
+        cursor: pointer;
+        padding:8px 16px;
+        border-radius: 4px;
+    }
+    .panel .row:nth-last-child(1)  input:nth-child(1) {
+        margin-right:20px;
+    }
+</style>
+</body>
+</html>

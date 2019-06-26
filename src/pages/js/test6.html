@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文字变大变小</title>
+</head>
+<body>
+    <input type="button" value="+">
+    <input type="button" value="-">
+    <input type="button" value="红">
+    <input type="button" value="黄">
+
+    <p>这里一段文字这是一段文字这里一段文字这是一段文字这里一段文字这是一段文字这里一段文字这是一段文字这里一段文字这是一段文字</p>
+
+<script>
+    let aInp = document.getElementsByTagName('input')
+    let oP = document.getElementsByTagName('p')[0]
+    let fontSize = 12
+   
+    aInp[0].onclick = function () {
+        fontSize++
+        if(fontSize > 24) {
+            fontSize = 24
+        } 
+        oP.style.fontSize = fontSize + 'px'
+    }
+    aInp[1].onclick = function () {
+        fontSize--
+        if(fontSize < 12) {
+            fontSize = 12
+        } 
+        oP.style.fontSize = fontSize + 'px'
+    }
+
+    aInp[2].onclick = function () {
+        oP.style.background = 'red';
+        oP.style.color = '#fff'
+    }
+    
+    aInp[3].onclick = function () {
+        oP.style.background = 'yellow';
+        oP.style.color = '#000'
+    }
+</script>
+<style>
+    p {
+        font-size:12px;
+    }
+</style>
+</body>
+</html>

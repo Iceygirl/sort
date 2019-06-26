@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>按钮onClick</title>
+</head>
+<body>
+    <input type="button" value="显示">
+    <input type="button" value="隐藏">
+    <span class="showBtn">显示</span>
+    <div class="box"></div>
+
+<script>
+    let aInput = document.getElementsByTagName('input')
+    let oBox = document.getElementsByTagName('div')[0]
+    let oSpan = document.getElementsByTagName('span')[0]
+    aInput[0].onclick = function () {
+        oBox.style.display = 'block'
+    }
+    aInput[1].onclick = function () {
+        oBox.style.display = 'none'
+    }
+    oSpan.onclick = function () {
+        oBox.style.display = 'block'
+    }
+</script>
+<style>
+    .showBtn {
+        display: inline-block;
+        border:1px solid #000;
+        padding:0 2px;
+        cursor: pointer;
+        user-select: none;
+    }
+    .box {
+        width:100px;
+        height: 100px;
+        background-color: blueviolet;
+        margin-top:10px;
+        display: none;
+    }
+</style>
+</body>
+
+</html>
+
+    

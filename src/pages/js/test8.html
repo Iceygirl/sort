@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片切换</title>
+</head>
+<body>
+    <div class="imgWrap">
+        <p class="topTit"></p>
+        <img src="" alt="">
+        <p class="bottomTit"></p>
+        <span class="btn"></span><span class="btn"></span>
+    </div>
+<style>
+    p {
+        margin:0;
+    }
+    .imgWrap {
+        width:300px;
+        height:300px;
+        background-color:#ccc;
+        position: relative;
+    }
+    .imgWrap p {
+        width:100%;
+        height:30px;
+        line-height: 30px;
+        text-align: center;
+        font-size:16px;
+        color:#fff;
+        background-color:rgba(0,0,0,0.6);
+        position: absolute;
+        left:0;
+        z-index:1;
+    }
+    .imgWrap .topTit {
+        top:0;
+    }
+    .imgWrap .bottomTit {
+        bottom:0;
+    }
+    .imgWrap img {
+        position: absolute;
+        width:100%;
+        height:100%;
+        left:0;
+        top:0;
+        z-index:0;
+    }
+</style>
+</body>
+</html>
